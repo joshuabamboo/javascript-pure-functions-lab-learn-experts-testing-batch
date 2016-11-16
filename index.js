@@ -11,3 +11,21 @@ const episodes = [
 ];
 
 const finaleEpisode = { id: 's06e10', title: 'The Winds of Winter' };
+
+
+var addToPlaylist = (playlist, episode) => [...playlist, episode];
+
+var removeFromPlaylist = (playlist, episode) => {
+  let copy = Object.assign([], playlist);
+  let i = copy.indexOf(episode);
+  copy.splice(i, 1);
+  return copy
+};
+
+var getNextEpisodeInPlaylist = playlist => playlist[0];
+
+function bingeWatch(playlist) {
+  if (playlist.length === 0) {return 'Please let there be more!';} 
+  let remainingEpisodes = removeFromPlaylist(playlist, playlist[0])
+  return bingeWatch(remainingEpisodes)
+}
